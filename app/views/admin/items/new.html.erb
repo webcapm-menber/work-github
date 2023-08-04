@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>新規登録商品</h1>
+
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+
+  <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました。
+    <% @item.errors.full_messages.each do |messages| %>
+      <li><%= messages %></li>
+    <% end %>
+  <% end %>
+
+  <%= form_with model: @item, url: admin_items_path do |f| %>
+    <%= f.label :image, '商品画像' %>
+    <%= f.file_field :image, accept: "iamge/*" %>
+    <br>
+    <%= f.label :name, '商品名'%>
+    <%= f.text_field :name, placeholder:"商品名"%>
+    <br>
+    <%= f.label :introduction, '商品説明'%>
+    <%= f.text_area :introduction, placeholder:"商品説明"%>
+    <br>
+    <%= f.label 'ジャンル'%>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+    <br>
+    <%= f.label :price, '税抜価格'%>
+    <%= f.text_field :price, placeholder:'1000'%>
+    <br>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active, '販売停止中'%>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active, '販売中'%>
+    <br>
+    <%= f.submit '新規登録'%>
+  <% end %>
+</div>

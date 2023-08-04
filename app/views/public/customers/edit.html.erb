@@ -1,0 +1,53 @@
+<h1>会員情報編集</h1>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<%= form_with model: @customer, url: public_customers_update_path, method: :patch do |f| %>
+    <span>名前</span>
+    <%= f.label :last_name, "（姓）" %>
+    <%= f.text_field :last_name, autofocus: true %>
+    <%= f.label :first_name, "（名）" %>
+    <%= f.text_field :first_name, autofocus: true %>
+    <br>
+
+    <span>フリガナ</span>
+    <%= f.label :last_name_kana, "（セイ）" %>
+    <%= f.text_field :last_name_kana, autofocus: true %>
+    <%= f.label :first_name_kana, "（メイ）" %>
+    <%= f.text_field :first_name_kana, autofocus: true %>
+    <br>
+
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <br>
+
+    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+    <%= f.text_field :postal_code %>
+    <br>
+
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+    <br>
+
+    <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
+    <%= f.telephone_field :telephone_number %>
+    <br>
+
+    <%= f.label :password, "パスワード"%>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>文字以上)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <br>
+
+    <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+  <div class="actions">
+    <%= f.submit "変更内容を保存" %>
+  </div>
+<% end %>
+
+<p><%= link_to "退会する", public_unsubscribe_path %></p>

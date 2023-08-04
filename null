@@ -1,0 +1,79 @@
+=> Booting Puma
+=> Rails 6.1.7.4 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 5.6.6 (ruby 3.1.2-p20) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 7202
+* Listening on http://127.0.0.1:8080
+* Listening on http://[::1]:8080
+Use Ctrl-C to stop
+Started POST "/genres" for 115.36.108.82 at 2023-07-30 12:39:59 +0000
+Cannot render console from 115.36.108.82! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GenresController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "genre"=>{"name"=>""}, "commit"=>"新規登録"}
+  Rendering layout layouts/application.html.erb
+  Rendering genres/index.html.erb within layouts/application
+  [1m[36mGenre Load (0.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/views/genres/index.html.erb:25
+  Rendered genres/index.html.erb within layouts/application (Duration: 33.1ms | Allocations: 4965)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? ORDER BY "admins"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:28
+  Rendered layout layouts/application.html.erb (Duration: 99.2ms | Allocations: 17665)
+Completed 200 OK in 140ms (Views: 115.6ms | ActiveRecord: 1.3ms | Allocations: 26044)
+
+
+Started POST "/genres" for 115.36.108.82 at 2023-07-30 12:40:05 +0000
+Cannot render console from 115.36.108.82! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by GenresController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "genre"=>{"name"=>""}, "commit"=>"新規登録"}
+  Rendering layout layouts/application.html.erb
+  Rendering genres/index.html.erb within layouts/application
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/views/genres/index.html.erb:25
+  Rendered genres/index.html.erb within layouts/application (Duration: 12.1ms | Allocations: 2811)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? ORDER BY "admins"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:28
+  Rendered layout layouts/application.html.erb (Duration: 28.1ms | Allocations: 7816)
+Completed 200 OK in 41ms (Views: 34.8ms | ActiveRecord: 0.2ms | Allocations: 13834)
+
+
+Started GET "/genres" for 115.36.108.82 at 2023-07-30 12:40:08 +0000
+Cannot render console from 115.36.108.82! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by GenresController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering genres/index.html.erb within layouts/application
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/views/genres/index.html.erb:25
+  Rendered genres/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1297)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? ORDER BY "admins"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:28
+  Rendered layout layouts/application.html.erb (Duration: 30.4ms | Allocations: 5598)
+Completed 200 OK in 34ms (Views: 30.9ms | ActiveRecord: 0.2ms | Allocations: 6090)
+
+
+Started POST "/genres" for 115.36.108.82 at 2023-07-30 12:40:09 +0000
+Cannot render console from 115.36.108.82! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by GenresController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "genre"=>{"name"=>""}, "commit"=>"新規登録"}
+  Rendering layout layouts/application.html.erb
+  Rendering genres/index.html.erb within layouts/application
+  [1m[36mGenre Load (0.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres"[0m
+  ↳ app/views/genres/index.html.erb:25
+  Rendered genres/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 2116)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mAdmin Load (0.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = ? ORDER BY "admins"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:28
+  Rendered layout layouts/application.html.erb (Duration: 22.2ms | Allocations: 6349)
+Completed 200 OK in 28ms (Views: 22.4ms | ActiveRecord: 0.2ms | Allocations: 7395)
+
+
+- Gracefully stopping, waiting for requests to finish
+Exiting

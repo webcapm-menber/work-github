@@ -1,0 +1,14 @@
+<div class="contaier">
+  <div class="row">
+    
+    <div class="col">
+      <%= image_tag @item.image, size: "250x200" %>
+    </div>
+    
+    <div class="col">
+      <%= @item.name %>
+      <%= @item.introduction %>
+      <%= link_to "カートに入れる", items_path %>
+    </div>
+  </div>
+</div>
