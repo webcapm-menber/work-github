@@ -5,6 +5,7 @@ class CreateShippingAddresses < ActiveRecord::Migration[6.1]
       t.string :address,      null: false
       t.string :postal_code,  null: false
       t.string :address_name, null: false
+      t.string :customer_id,  null: false
       t.timestamps
     end
   end

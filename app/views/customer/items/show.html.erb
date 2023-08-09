@@ -1,14 +1,32 @@
 <div class="contaier">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
   <div class="row">
     
     <div class="col">
       <%= image_tag @item.image, size: "250x200" %>
     </div>
     
-    <div class="col">
-      <%= @item.name %>
-      <%= @item.introduction %>
-      <%= link_to "カートに入れる", items_path %>
-    </div>
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+    
+      <div class="col">
+        <p><%= @item.name %></p>
+        <p><%= @item.introduction %></p>
+        <sapn>
+          ￥<%= @item.price %>(税込)
+          <% if @item.is_active == true %>
+            <span>販売中</span>
+          <% else %>
+            <span>販売停止中</span>
+          <% end %>
+        </sapn><br>
+        <%= f.select :amount, *[1..10]%>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit "カートに入れる" %>
+      </div>
+      
+    <% end %>
+    
   </div>
 </div>
