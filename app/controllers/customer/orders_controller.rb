@@ -9,10 +9,8 @@ class Customer::OrdersController < ApplicationController
 
   def check
     @order = Order.new(order_params)
-    @cart_item = current_customer.cart_items.all
-    # byebug
-    @total = @cart_item.inject(0) { |sum, item| sum + item.subtotal }  #商品合計金額の計算
-
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }  #商品合計金額の計算
     if params[:order][:select_address] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -37,20 +35,35 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
-    # byebug
-    if @order.save
+    order = current_customer.orders.new(order_params)
+    cart_item = current_customer.cart_items.all
+    order.status = 0
+
+    if order.save
+      cart_item.each do |cart_item| 
+        OrderDetail.create(   #注文詳細モデルのカラムのcreate
+          item_id: cart_item.item_id, order_id: order.id,
+          quantity: cart_item.amount, price: cart_item.item.price
+        )
+      end
+      cart_item.destroy_all
       redirect_to orders_completed_path
     else
-      # render :check, notice: "注文の確定に失敗しました。"
+      @order = Order.new
+      render :new
+      flash[:notice] = "注文の確定に失敗しました。"
     end
+    
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders.all
+    # byebug
   end
 
   def show
+    @orders = current_customer.orders.find(params[:id])
+    # @order_detail = current_customer.order_details.all
   end
 
   private

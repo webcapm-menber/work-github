@@ -12,15 +12,18 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get root to: 'homes#top'
-    get 'homes/about'
+    get 'admin/homes/index/:id',to: 'homes#index'
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
     #以下の内容でも
     # resources :customers, only: %i[index show edit update]
   end
 
   namespace :public do
     root to: "homes#top"
+    get 'homes/about'
     get 'customers/unsubscribe', to: 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdrawal', to: 'customers#withdrawal', as: 'withdrawal'
     get 'customers/show', to: 'customers#show'

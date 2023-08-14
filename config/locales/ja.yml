@@ -10,6 +10,12 @@ ja:
         production: "製作中"
         shipping_preparation: "発送準備中"
         sent: "発送済み"
+    order_detail:
+      production_status:
+        cannot_start: "着手不可"
+        waiting_production: "製作待ち"
+        production: "製作中"
+        completion_production: "製作完了"
   activerecord:
     errors:
       messages:
@@ -191,3 +197,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

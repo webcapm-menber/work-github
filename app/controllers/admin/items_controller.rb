@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:notice] = "新規商品の登録に成功しました。"
-      redirect_to admin_items_path(@item.id)
+      redirect_to admin_item_path(@item.id)
     else
       flash[:notice] = "新規商品の登録に失敗しました。"
       @items = Item.new
@@ -20,7 +20,7 @@ class Admin::ItemsController < ApplicationController
   end
   
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
     # @items = Kaminari.paginate_array(@items).page(params[:page]).per(5)
     #ページネーション実装してない
   end

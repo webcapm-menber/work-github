@@ -33,6 +33,5 @@ class Order < ApplicationRecord
   def address_display
   '〒' + postal_code + ' ' + address
   end
-  
 
 end

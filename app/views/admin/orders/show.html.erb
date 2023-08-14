@@ -1,0 +1,85 @@
+<div class="container">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <div class="row">
+    <div class="col-lg-10"> 
+      <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <th>購入者</th>
+            <td><%= @order.customer.last_name%> <%= @order.customer.first_name %></td>
+          </tr>
+          <tr>
+            <th>注文日</th>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <td>
+              <%= @order.address_display %>
+              <%= @order.address_name %>
+            </td>
+          </tr>
+          <tr>
+            <th>支払い方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <th>注文ステータス</th>
+            <td>
+              <%= f.select :status, Order.statuses_i18n.invert %>
+              <%= f.submit "更新", class: "btn btn-outline-success" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+        <table class="table table-bordered">
+          <thead>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+          </thead>
+          
+          <tbody>
+            <% @order.order_details.each do |order| %>
+              <%= form_with model: order, url: admin_order_detail_path(order.id), method: :patch do |f| %>
+                <tr>
+                  <td><%= order.item.name %></td>
+                  <td><%= order.price_def.to_s(:delimited) %></td>
+                  <td><%= order.quantity %></td>
+                  <td><%= order.subtotal.to_s(:delimited) %></td>
+                  <td>
+                    <%= f.select :production_status, OrderDetail.production_statuses_i18n.invert %>
+                    <%= f.submit "更新", class: "btn btn-outline-success" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-lg-4">
+      <table class="table table-borderless">
+        <tr>
+          <th>商品合計</th>
+          <td><%= @order.payment - @order.postage %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= @order.payment %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

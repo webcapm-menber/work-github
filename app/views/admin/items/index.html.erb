@@ -22,14 +22,13 @@
         <td><%= item.price %></td>
         <td><%= item.genre.name %></td>
         <% if item.is_active == true%>
-          <td>販売中</td>
+          <td style="color: green">販売中</td>
         <% else %>
-          <td>販売停止中</td>
+          <td style="color: red">販売停止中</td>
         <% end %>
       </tr>
       
     <% end %>
   </table>
+  <%= paginate @items %>
 </div>
-
- <!--paginate(@items) -->

@@ -4,7 +4,8 @@ class Customer::CartItemsController < ApplicationController
   before_action :set_params, only: %i[update destroy]
 
   def index
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.all
+    @count = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }  #合計金額の計算
   end
 

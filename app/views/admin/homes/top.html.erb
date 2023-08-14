@@ -1,17 +1,36 @@
-<h1>注文履歴一覧</h1>
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
-<table>
-  
-  <tr>
-    <th>購入時価格</th>
-    <th>購入者</th>
-    <th>注文個数</th>
-    <th>注文ステータス</th>
-  </tr>
-  
-  <tr>
-    <td></td>
-  </tr>
-</table>
+<div class="container">
+  <h3>注文履歴一覧</h3>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <table class="table table-bordered">
+
+    <thead>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id), class: 'nav-link text-dark'  %></td>
+          <td>
+            <%= link_to admin_path(order.customer.id) do %>
+              <%= order.customer.last_name %><%= order.customer.first_name %>
+            <% end %>
+          </td>
+          <td>
+            <% @total_quantity = 0 %>
+            <% order.order_details.each do |order| %>
+              <% @total_quantity += order.quantity %>
+            <% end %>
+            <%= @total_quantity %>
+          </td>
+          <td><%= order.status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

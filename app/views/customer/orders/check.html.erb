@@ -5,7 +5,7 @@
     <div class="row">
 
       <div class="col">
-        <table>
+        <table class="table table-bordered">
 
           <thead>
             <th>商品名</th>
@@ -13,20 +13,27 @@
             <th>数量</th>
             <th>小計</th>
           </thead>
-
+          
           <tbody>
+            <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
-                <%= @cart_item.item.name %>
+                <%= image_tag cart_item.item.image, size: "50x50" %>
+                <%= cart_item.item.name %>
               </td>
+              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+              <td><%= cart_item.amount %></td>
+              <!--小計の計算-->
+              <td><%= (cart_item.item.with_tax_price * cart_item.amount).to_s(:delimited) %></td>
             </tr>
+            <% end %>
           </tbody>
 
         </table>
       </div>
 
       <div class="col">
-        <table>
+        <table class="table table-bordered">
           <tr>
             <td>送料</td>
             <td><%= @order.postage %>円</td>
@@ -34,13 +41,12 @@
           </tr>
           <tr>
             <td>商品合計</td>
-            <td><%= @total %></td>
+            <td><%= @total.to_s(:delimited) %>円</td>
+            <%= f.hidden_field :payment, :value => @total %>
           </tr>
           <tr>
             <td>請求金額</td>
-            <% @order.payment = @total + @order.postage %>
-            <td><%= @order.payment %></td>
-            <%= f.hidden_field :payment, :value => @order.payment %>
+            <td><%= (@total + @order.postage).to_s(:delimited) %>円</td>
           </tr>
         </table>
       </div>
