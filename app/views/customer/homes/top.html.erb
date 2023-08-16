@@ -1,5 +1,4 @@
 <div class="container">
-  
   <% if flash[:notice] %>
     <%= flash[:notice] %>
   <% end %>
@@ -10,5 +9,21 @@
     購入には会員登録が必要になります。
   </p>
   <h3>新着商品</h3>
+  <div class="row">
+    <div class="col-lg-12 d-flex">
+      <% @items.last(4).each do |item| %>
+        <div class="m-2">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.image, size: "120x100" %>
+          <% end %>
+            <div>
+              <span><%= item.name %></span>
+              <span>￥<%= item.price.to_s(:delimited) %></span>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
   <%= link_to "全ての商品を見る", items_path, class: "btn btn-success" %>
 </div>

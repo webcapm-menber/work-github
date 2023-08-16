@@ -6,7 +6,7 @@
     <%= flash[:notice] %>
   <% end %>
   
-  <%= form_with model: @order, url: orders_check_path, method: :GET do |f| %>
+  <%= form_with model: @order, url: check_orders_path, method: :GET do |f| %>
   
     <p>支払い方法</p>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>

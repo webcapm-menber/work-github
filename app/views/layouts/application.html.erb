@@ -21,7 +21,7 @@
 
             <% if customer_signed_in? %>
               <li class="nav-item">
-                <%= link_to "マイページ", public_customers_show_path, class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "マイページ", customers_show_path, class: "btn btn-sm btn-outline-secondary" %>
               </li>
               <li class="nav-item">
                 <%= link_to "商品一覧", items_path, class: "btn btn-sm btn-outline-secondary" %>
@@ -54,7 +54,7 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "About", public_homes_about_path, class: 'nav-link text-dark' %>
+                <%= link_to "About", homes_about_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>

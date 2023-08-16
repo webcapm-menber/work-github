@@ -13,11 +13,11 @@
   <% end %>
   
   <%= form_with model: @shipping_address, url: shipping_address_path, method: :patch do |f| %>
-    <%= f.label :address, "郵便番号（ハイフンなし）"%>
-    <%= f.text_field :address %>
+    <%= f.label :postal_code, "郵便番号（ハイフンなし）"%>
+    <%= f.text_field :postal_code %>
     <br>
-    <%= f.label :postal_code, "住所"%>
-    <%= f.text_field :postal_code, :size=>"40" %>
+    <%= f.label :address, "住所"%>
+    <%= f.text_field :address, :size=>"40" %>
     <br>
     <%= f.label :address_name, "宛名"%>
     <%= f.text_field :address_name %>

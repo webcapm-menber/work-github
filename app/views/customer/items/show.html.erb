@@ -14,7 +14,7 @@
         <p><%= @item.name %></p>
         <p><%= @item.introduction %></p>
         <sapn>
-          ￥<%= @item.price %>(税込)
+          ￥<%= @item.with_tax_price %>(税込)
           <% if @item.is_active == true %>
             <span>販売中</span>
           <% else %>

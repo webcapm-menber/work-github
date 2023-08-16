@@ -47,7 +47,7 @@ class Customer::OrdersController < ApplicationController
         )
       end
       cart_item.destroy_all
-      redirect_to orders_completed_path
+      redirect_to completed_orders_path
     else
       @order = Order.new
       render :new

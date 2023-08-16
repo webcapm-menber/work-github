@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2023_08_08_124557) do
     t.string "introduction", null: false
     t.integer "price", null: false
     t.integer "genre_id", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

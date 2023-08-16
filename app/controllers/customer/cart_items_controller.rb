@@ -36,10 +36,6 @@ class Customer::CartItemsController < ApplicationController
   def update
     if @cart_item.update(cart_item_params)
       redirect_to cart_items_path, notice: "数量の変更に成功しました。"
-      # flash[:notice] = "数量の変更に成功しました。"
-      # redirect_back(fallback_location: root_path)
-    else
-      render :index, notice: "数量の変更に失敗しました。"
     end
   end
 
